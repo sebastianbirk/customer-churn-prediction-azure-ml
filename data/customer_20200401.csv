@@ -1,0 +1,2 @@
+customerID,gender,SeniorCitizen,Partner,Dependents,tenure,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges,Churn
+1337-SBIRK,Male,0,Yes,No,1,Yes,Yes,DSL,No,No,No,No,No,No,Two year,Yes,Bank transfer (automatic),24.50,29.85,No
