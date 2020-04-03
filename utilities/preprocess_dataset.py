@@ -5,7 +5,7 @@ import pandas as pd
 
 from sklearn.preprocessing import LabelEncoder
 
-def run_preprocessing(telcom):  
+def run_preprocessing(telcom, training_mode=True):  
     '''
     This function preprocesses the customer churn dataset so that it is in a format ready to be fed into ML pipelines.
     
@@ -16,7 +16,10 @@ def run_preprocessing(telcom):
     '''
     
     # Drop unnecessary columns which should not be used as features
-    telcom.drop(["customerID", "PartitionDate"], axis=1, inplace=True)
+    telcom.drop("customerID", axis=1, inplace=True)
+    
+    if training_mode:
+        telcom.drop("PartitionDate", axis=1, inplace=True)
     
     # Replace spaces with null values in total charges column
     telcom['TotalCharges'] = telcom["TotalCharges"].replace(" ",np.nan)
@@ -29,9 +32,10 @@ def run_preprocessing(telcom):
                     "TechSupport","StreamingTV", "StreamingMovies"]
     for i in replace_cols : 
         telcom[i]  = telcom[i].replace({"No internet service" : "No"})
-        
-    # Replace values for Churn column
-    telcom["Churn"] = telcom["Churn"].replace({False:0, True:1})
+    
+    if training_mode:
+        # Replace values for Churn column
+        telcom["Churn"] = telcom["Churn"].replace({False:0, True:1})
     
     # Transform tenure to categorical column
     def tenure_lab(telcom) :    
@@ -52,8 +56,12 @@ def run_preprocessing(telcom):
     telcom.drop("tenure", axis=1, inplace=True)
     
     # Separate target column from feature columns
-    y = telcom["Churn"]
-    X = telcom.drop("Churn", axis=1)
+    if training_mode:
+        y = telcom["Churn"]
+        X = telcom.drop("Churn", axis=1)
+        
+    else:
+        X = telcom
     
     # Get categorical features
     categorical_features = X.nunique()[telcom.nunique() < 6].keys().tolist() # get columns with less than 6 unique values
@@ -74,4 +82,8 @@ def run_preprocessing(telcom):
     # Build dummy columns for multi value columns
     X = pd.get_dummies(data = X)
     
-    return X, y
+    if training_mode:
+        return X, y
+    
+    else:
+        return X
