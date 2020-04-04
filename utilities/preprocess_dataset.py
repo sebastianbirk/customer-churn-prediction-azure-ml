@@ -1,11 +1,8 @@
 
-# Import libraries
 import numpy as np
 import pandas as pd
 
-from sklearn.preprocessing import LabelEncoder
-
-def run_preprocessing(telcom, training_mode=True):  
+def run(data, training_mode=True):  
     '''
     This function preprocesses the customer churn dataset so that it is in a format ready to be fed into ML pipelines.
     
@@ -15,56 +12,79 @@ def run_preprocessing(telcom, training_mode=True):
             y is a Pandas series containing the target column "Churn"
     '''
     
-    # Drop unnecessary columns which should not be used as features
-    telcom.drop("customerID", axis=1, inplace=True)
+    if training_mode==False: # service mode
+        
+        columns = ['customerID','gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure','PhoneService',
+                 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
+                 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
+                 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges',
+                 'TotalCharges']
+        
+        data_zipped = zip(columns,data)
+        
+        data_dictionary = dict(data_zipped)
+        
+        df = pd.DataFrame(data_dictionary, index=[0])
     
-    if training_mode:
-        telcom.drop("PartitionDate", axis=1, inplace=True)
+    else:
+        df = data
+    
+    # Drop unnecessary columns which should not be used as features
+    df.drop("customerID", axis=1, inplace=True)
+    df.drop("PartitionDate", axis=1, inplace=True, errors="ignore")
     
     # Replace spaces with null values in total charges column
-    telcom['TotalCharges'] = telcom["TotalCharges"].replace(" ",np.nan)
+    df['TotalCharges'] = df["TotalCharges"].replace(" ",np.nan)
     
-    # Convert total charges to float type
-    telcom["TotalCharges"] = telcom["TotalCharges"].astype(float)
+    # Convert total charges to float type and tenure to int type
+    df["TotalCharges"] = df["TotalCharges"].astype(float)
+    df["tenure"] = df["tenure"].astype(int)
     
     # Replace 'No internet service' to No for the following columns
     replace_cols = ["OnlineSecurity", "OnlineBackup", "DeviceProtection",
                     "TechSupport","StreamingTV", "StreamingMovies"]
     for i in replace_cols : 
-        telcom[i]  = telcom[i].replace({"No internet service" : "No"})
+        df[i]  = df[i].replace({"No internet service":"No"})
+    
+    # Replace 0 and 1 for numeric binary columns
+    num_bin_cols = ["gender", "SeniorCitizen", "Partner", "Dependents", "PhoneService", 
+                    "OnlineSecurity", "OnlineBackup", "DeviceProtection", "TechSupport", "StreamingTV",
+                    "StreamingMovies", "PaperlessBilling"]
+    for i in num_bin_cols : 
+        df[i]  = df[i].replace({0:"No", 1:"Yes"})
     
     if training_mode:
         # Replace values for Churn column
-        telcom["Churn"] = telcom["Churn"].replace({False:0, True:1})
+        df["Churn"] = df["Churn"].replace({False:0, True:1})
     
     # Transform tenure to categorical column
-    def tenure_lab(telcom) :    
-        if telcom["tenure"] <= 12 :
+    def tenure_lab(df) :    
+        if df["tenure"] <= 12 :
             return "Tenure_0-12"
-        elif (telcom["tenure"] > 12) & (telcom["tenure"] <= 24 ):
+        elif (df["tenure"] > 12) & (df["tenure"] <= 24 ):
             return "Tenure_12-24"
-        elif (telcom["tenure"] > 24) & (telcom["tenure"] <= 48) :
+        elif (df["tenure"] > 24) & (df["tenure"] <= 48) :
             return "Tenure_24-48"
-        elif (telcom["tenure"] > 48) & (telcom["tenure"] <= 60) :
+        elif (df["tenure"] > 48) & (df["tenure"] <= 60) :
             return "Tenure_48-60"
-        elif telcom["tenure"] > 60 :
+        elif df["tenure"] > 60 :
             return "Tenure_gt_60"
         
-    telcom["tenure_group"] = telcom.apply(lambda telcom:tenure_lab(telcom), axis = 1)
+    df["tenure_group"] = df.apply(lambda df:tenure_lab(df), axis = 1)
     
     # Drop original tenure column
-    telcom.drop("tenure", axis=1, inplace=True)
+    df.drop("tenure", axis=1, inplace=True)
     
     # Separate target column from feature columns
     if training_mode:
-        y = telcom["Churn"]
-        X = telcom.drop("Churn", axis=1)
+        y = df["Churn"]
+        X = df.drop("Churn", axis=1)
         
     else:
-        X = telcom
+        X = df
     
-    # Get categorical features
-    categorical_features = X.nunique()[telcom.nunique() < 6].keys().tolist() # get columns with less than 6 unique values
+    '''# Get categorical features
+    categorical_features = X.nunique()[df.nunique() < 6].keys().tolist() # get columns with less than 6 unique values
 
     # Get numerical features
     numeric_features = [x for x in X.columns if x not in categorical_features]
@@ -80,7 +100,7 @@ def run_preprocessing(telcom, training_mode=True):
         X[i] = le.fit_transform(X[i])
     
     # Build dummy columns for multi value columns
-    X = pd.get_dummies(data = X)
+    X = pd.get_dummies(data = X)'''
     
     if training_mode:
         return X, y
