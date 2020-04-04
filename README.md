@@ -16,16 +16,21 @@ Create Resource Group
 
 ## Step 2:
 Create Azure Machine Learning Workspace
+
 ![create-azure-ml-workspace](https://user-images.githubusercontent.com/34235961/78451184-3b3f8280-7684-11ea-93d6-bc64767b8cbd.png)
+
+## Step 3:
+Enter your Azure Machine Learning Workspace
 
 ![launch-workspace](https://user-images.githubusercontent.com/34235961/78451415-c9683880-7685-11ea-91b7-2e4a9797ab29.png)
 
-## Step 3:
+## Step 4:
 Create Compute Instance in Azure Maching Learning Workspace
+
 ![create-compute-instance](https://user-images.githubusercontent.com/34235961/78451196-54483380-7684-11ea-8996-02c44cd37f44.png)
 
-## Step 4:
-Clone this Git Repository
+## Step 5:
+Clone Git Repository
 
 ![open-jupyter](https://user-images.githubusercontent.com/34235961/78451232-a5582780-7684-11ea-8fbb-bdb1e341a905.png)
 
