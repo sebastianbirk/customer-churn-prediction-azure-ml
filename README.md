@@ -11,6 +11,7 @@ Different features of the Azure Machine Learning Studio will be shown while work
 # Demo Instructions
 ## Step 1:
 Create Resource Group
+
 ![create-resource-group](https://user-images.githubusercontent.com/34235961/78451170-1e0ab400-7684-11ea-84ab-ec6707d7c44e.png)
 
 ## Step 2:
