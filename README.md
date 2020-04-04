@@ -1,4 +1,5 @@
-# Customer Churn Prediction with Azure ML: From Data to Model in Production
+# Customer Churn Prediction with Azure ML:
+# From Data to Model in Production
 
 This repository contains an end-to-end ML lifecycle demo using the Azure Maching Learning Studio.
 
