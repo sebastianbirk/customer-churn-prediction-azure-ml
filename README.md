@@ -97,4 +97,4 @@ Install all necessary dependencies on your compute instance.
 ![install_dependencies](https://user-images.githubusercontent.com/34235961/78451391-a63d8900-7685-11ea-9da0-4e4ef13cd8bc.png)
 
 ## Step 13:
-You can now run the notebooks. Specific instructions can be found in the notebooks. You can ommit running 03_customer_churn_train_decision_tree and 04_customer_churn_train_automl.
+You can now run the notebooks. Specific explanations can be found as comments in the notebooks. You can ommit running **"03_customer_churn_train_decision_tree"** and **"04_customer_churn_train_automl"** without affecting the downstream workflow.
