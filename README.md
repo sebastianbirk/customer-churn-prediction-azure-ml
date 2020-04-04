@@ -81,7 +81,7 @@ First retrieve your storage account key from the Azure Portal:
 
 
 ## Step 11:
-Register a dataset using your datastore.
+Register a dataset using your datastore. **Important: the dataset has to be named "customer-churn".
 
 ![create-dataset-1](https://user-images.githubusercontent.com/34235961/78451271-ed774a00-7684-11ea-93e8-ac79edb06b91.png)
 
