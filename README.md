@@ -20,7 +20,7 @@ Create Azure Machine Learning Workspace
 ![create-azure-ml-workspace](https://user-images.githubusercontent.com/34235961/78451184-3b3f8280-7684-11ea-93d6-bc64767b8cbd.png)
 
 ## Step 3:
-Enter your Azure Machine Learning Workspace
+Enter your Azure Machine Learning Workspace by Clicking "Launch Now"
 
 ![launch-workspace](https://user-images.githubusercontent.com/34235961/78451415-c9683880-7685-11ea-91b7-2e4a9797ab29.png)
 
