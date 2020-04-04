@@ -42,7 +42,7 @@ Enter the terminal, switch directories to your user directory and clone this rep
 ![clone-git-repo](https://user-images.githubusercontent.com/34235961/78451210-704bd500-7684-11ea-9f4f-f88080d5218b.png)
 
 ## Step 7:
-Download the two data files from the "data" Folder to your local machine.
+Download the two data files from the "data" folder to your local machine.
 
 ![download-data](https://user-images.githubusercontent.com/34235961/78451350-73939080-7685-11ea-9173-a8be7b23e038.png)
 
