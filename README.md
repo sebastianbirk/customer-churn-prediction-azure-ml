@@ -66,7 +66,7 @@ Create two directories:
 ![create-directory](https://user-images.githubusercontent.com/34235961/78451249-c4ef5000-7684-11ea-9107-8698ca2fdab0.png)
 
 ## Step 9:
-Upload the two data files in the respective directory in your Azure Data Lake Gen2.
+Upload the two data files in the respective directories in your Azure Data Lake Gen2 (according to the date).
 
 ![upload-data](https://user-images.githubusercontent.com/34235961/78451429-e13fbc80-7685-11ea-94e2-e19746bcc0b4.png)
 
