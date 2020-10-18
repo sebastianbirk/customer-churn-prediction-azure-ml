@@ -71,7 +71,7 @@ Upload the two data files in the respective directories in your Azure Data Lake 
 ![upload-data](https://user-images.githubusercontent.com/34235961/78451429-e13fbc80-7685-11ea-94e2-e19746bcc0b4.png)
 
 ## Step 10:
-Register your Azure Data Lake Gen2 as a **storage account** (not as an Azure Data Lake Gen2) datastore in the Azure Machine Learning workspace
+Register your Azure Data Lake Gen2 as a **storage account** (not as an Azure Data Lake Gen2) datastore in the Azure Machine Learning Workspace.
 
 First retrieve your storage account key from the Azure Portal:
 
@@ -97,4 +97,4 @@ Install all necessary dependencies on your compute instance.
 ![install_dependencies](https://user-images.githubusercontent.com/34235961/78451391-a63d8900-7685-11ea-9da0-4e4ef13cd8bc.png)
 
 ## Step 13:
-You can now run the notebooks. Specific explanations can be found as comments in the notebooks. You can ommit running **"03_customer_churn_train_decision_tree"** and **"04_customer_churn_train_automl"** without affecting the downstream workflow.
+You can now run the notebooks. Specific explanations can be found as comments in the notebooks. You can omit running **"03_customer_churn_train_decision_tree"** and **"04_customer_churn_train_automl"** without affecting the downstream workflow.
