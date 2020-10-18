@@ -12,7 +12,7 @@ def run(data, training_mode=True):
             y is a Pandas series containing the target column "Churn"
     '''
     
-    if training_mode==False: # service mode
+    if not training_mode: # service mode
         
         columns = ['customerID','gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure','PhoneService',
                  'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
